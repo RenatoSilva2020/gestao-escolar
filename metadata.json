@@ -1,0 +1,5 @@
+{
+  "name": "Gestão de Relatórios - Módulo II",
+  "description": "Sistema para professores registrarem atividades extraclasse e supervisores gerarem relatórios mensais em PDF, seguindo a rotina das planilhas de monitoramento escolar.",
+  "requestFramePermissions": []
+}
