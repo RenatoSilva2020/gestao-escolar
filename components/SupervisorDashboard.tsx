@@ -3,6 +3,8 @@ import React, { useState, useRef, useMemo, useEffect } from 'react';
 import { User, MonthlyReport, ActivityType, UserRole } from '../types';
 import { MONTHS } from '../constants';
 import ReportGrid from './ReportGrid';
+import html2canvas from 'html2canvas';
+import { jsPDF } from 'jspdf';
 
 interface SupervisorDashboardProps {
   user: User;
@@ -111,7 +113,7 @@ const SupervisorDashboard: React.FC<SupervisorDashboardProps> = ({
     try {
       await new Promise(resolve => setTimeout(resolve, 1200));
 
-      const canvas = await (window as any).html2canvas(element, {
+      const canvas = await html2canvas(element, {
         scale: 4, // Aumentado para 4 para melhor resolução na impressão
         useCORS: true,
         logging: false,
@@ -119,7 +121,6 @@ const SupervisorDashboard: React.FC<SupervisorDashboardProps> = ({
       });
 
       const imgData = canvas.toDataURL('image/png');
-      const { jsPDF } = (window as any).jspdf;
       
       const pdf = new jsPDF('p', 'mm', 'a4');
       const pageWidth = pdf.internal.pageSize.getWidth();
